@@ -1,0 +1,31 @@
+name: Test cs
+
+on:
+  push:
+    branches: [master, dev]
+  pull_request:
+
+jobs:
+  test-cs:
+    strategy:
+      matrix:
+        # TODO: re-enable windows-latest (issue #11)
+        os: [ubuntu-latest, macos-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    steps:
+
+    - name: Install Haxe (4.2.5)
+      uses: krdlab/setup-haxe@v1
+      with:
+        haxe-version: 4.2.5
+
+    - name: Set up haxelibs
+      shell: bash
+      run: |
+        haxelib --quiet install hxcs
+
+    - name: Set up MSVC (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: ilammy/msvc-dev-cmd@v1
+
