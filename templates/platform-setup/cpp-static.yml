@@ -1,0 +1,8 @@
+    - name: Set up hxcpp
+      shell: bash
+      run: |
+        haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git
+        cd `haxelib path hxcpp | head -n 1`
+        cd tools/hxcpp
+        haxe compile.hxml
+

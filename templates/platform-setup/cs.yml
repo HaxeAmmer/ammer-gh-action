@@ -1,0 +1,5 @@
+    - name: Set up hxcs
+      shell: bash
+      run: |
+        haxelib --quiet install hxcs
+

@@ -1,0 +1,12 @@
+    - name: Checkout ammer
+      uses: actions/checkout@v2
+      with:
+        repository: "Aurel300/ammer"
+        ref: "ammer-core-rewrite"
+        path: "ammer"
+
+    - name: Set up ammer
+      shell: bash
+      run: |
+        haxelib dev ammer ammer
+

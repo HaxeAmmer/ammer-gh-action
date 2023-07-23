@@ -1,19 +1,9 @@
-name: Test python
-
-on:
-  push:
-    branches: [master, dev]
-  pull_request:
-
-jobs:
-  test-python:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
-
     - name: Adjust path (Linux)
       if: matrix.os == 'ubuntu-latest'
       run: |
@@ -29,14 +19,15 @@ jobs:
         fi
         sudo apt update
         sudo apt-get install -y software-properties-common
-        sudo apt-get install -y python3.8-dev
 
-    - name: Install Haxe (4.2.5)
-      uses: krdlab/setup-haxe@v1
-      with:
-        haxe-version: 4.2.5
-
-    - name: Set up MSVC
+    - name: Set up MSVC (Windows)
       if: matrix.os == 'windows-latest'
       uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Fix "link" (Windows)
+      if: matrix.os == 'windows-latest'
+      shell: bash
+      run: |
+        # "link" interferes with the MSVC linker
+        rm /usr/bin/link
 

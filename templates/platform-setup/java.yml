@@ -1,0 +1,26 @@
+    - name: Set up hxjava
+      shell: bash
+      run: |
+        haxelib --quiet install hxjava
+
+    - name: Set up Java paths (macOS)
+      if: matrix.os == 'macos-latest'
+      shell: bash
+      run: |
+        echo CI_JAVA_INCLUDEPATHS="$JAVA_HOME/include;$JAVA_HOME/include/darwin" >> $GITHUB_ENV
+        echo CI_JAVA_LIBRARYPATHS="$JAVA_HOME/jre/lib/server" >> $GITHUB_ENV
+
+    - name: Set up Java paths (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      shell: bash
+      run: |
+        echo CI_JAVA_INCLUDEPATHS="$JAVA_HOME/include;$JAVA_HOME/include/linux" >> $GITHUB_ENV
+        echo CI_JAVA_LIBRARYPATHS="$JAVA_HOME/lib/server" >> $GITHUB_ENV
+
+    - name: Set up Java paths (Windows)
+      if: matrix.os == 'windows-latest'
+      shell: bash
+      run: |
+        echo CI_JAVA_INCLUDEPATHS="$JAVA_HOME\include;$JAVA_HOME\include\win32" >> $GITHUB_ENV
+        echo CI_JAVA_LIBRARYPATHS="$JAVA_HOME\jre\bin\server;$JAVA_HOME\lib" >> $GITHUB_ENV
+

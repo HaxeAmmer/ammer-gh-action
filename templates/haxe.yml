@@ -1,0 +1,5 @@
+    - name: Install Haxe
+      uses: krdlab/setup-haxe@v1
+      with:
+        haxe-version: ${{env.CI_HAXE_VERSION}}
+

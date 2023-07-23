@@ -1,0 +1,6 @@
+    - name: Set up Neko paths
+      shell: bash
+      run: |
+        echo CI_NEKO_INCLUDEPATHS="$NEKOPATH/include" >> $GITHUB_ENV
+        echo CI_NEKO_LIBRARYPATHS="$NEKOPATH" >> $GITHUB_ENV
+

@@ -1,0 +1,12 @@
+    - name: Checkout ammer-core
+      uses: actions/checkout@v2
+      with:
+        repository: "Aurel300/ammer-core"
+        ref: "dev"
+        path: "ammer-core"
+
+    - name: Set up ammer-core
+      shell: bash
+      run: |
+        haxelib dev ammer-core ammer-core
+

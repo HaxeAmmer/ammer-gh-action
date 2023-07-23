@@ -1,16 +1,7 @@
-  test-eval:
-    strategy:
-      matrix:
-        # from https://github.com/HaxeFoundation/haxe/blob/development/.github/workflows/main.yml
-        # TODO: use https://github.com/ocaml/setup-ocaml for ocaml/opam (for caching)
-        # TODO: other systems
-        os: [macos-latest]
-      fail-fast: false
-    runs-on: ${{ matrix.os }}
-    env:
-      PLATFORM: mac
-      OPAMYES: 1
-    steps:
+    # TODO: this requires env: PLATFORM=mac (for neko) and OPAMYES=1
+    # TODO: checkout CI_HAXE_VERSION instead of latest Haxe
+    # TODO: use https://github.com/ocaml/setup-ocaml for ocaml/opam (for caching)
+    # TODO: also implement for linux, windows
 
     - name: Checkout Haxe
       uses: actions/checkout@v2
